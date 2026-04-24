@@ -1,0 +1,12 @@
+return render_template('login.html')
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Login</h1>
+<form method="POST">
+    <input type="text" name="username" placeholder="Uzivatelske jmeno">
+    <input type="password" name="password" placeholder="Heslo">
+    <button type="submit">Prihlasit</button>
+</form>
+{% endblock %}

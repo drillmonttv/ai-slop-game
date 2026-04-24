@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+<p>Autor: {{ post.author.username }}</p>
+
+<h3>Komentare</h3>
+{% for comment in post.comments %}
+    <p>{{ comment.content }} - {{ comment.author.username }}</p>
+{% endfor %}
+
+{% if session.user_id %}
+<form method="POST">
+    <textarea name="content"></textarea>
+    <button type="submit">Pridat komentar</button>
+</form>
+{% endif %}
+{% endblock %}

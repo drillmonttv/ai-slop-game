@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Registrace</h1>
+<form method="POST">
+    <input type="text" name="username" placeholder="Uzivatelske jmeno">
+    <input type="password" name="password" placeholder="Heslo">
+    <button type="submit">Registrovat</button>
+</form>
+{% endblock %}
