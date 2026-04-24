@@ -2,9 +2,13 @@
 
 {% block content %}
 <h1>Prispevky</h1>
+
 {% for post in posts %}
+<div class="post">
     <h2><a href="/post/{{ post.id }}">{{ post.title }}</a></h2>
     <p>{{ post.content[:100] }}...</p>
-    <small>{{ post.author.username }}</small>
+    <small>Autor: {{ post.author.username }}</small>
+</div>
 {% endfor %}
+
 {% endblock %}

@@ -3,16 +3,19 @@
 {% block content %}
 <h1>{{ post.title }}</h1>
 <p>{{ post.content }}</p>
-<p>Autor: {{ post.author.username }}</p>
+<p><b>Autor:</b> {{ post.author.username }}</p>
 
 <h3>Komentare</h3>
 {% for comment in post.comments %}
-    <p>{{ comment.content }} - {{ comment.author.username }}</p>
+<div class="comment">
+    <p>{{ comment.content }}</p>
+    <small>{{ comment.author.username }}</small>
+</div>
 {% endfor %}
 
-{% if session.user_id %}
+{% if 'user_id' in session %}
 <form method="POST">
-    <textarea name="content"></textarea>
+    <textarea name="content" placeholder="Napis komentar"></textarea>
     <button type="submit">Pridat komentar</button>
 </form>
 {% endif %}
