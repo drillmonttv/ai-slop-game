@@ -3,20 +3,27 @@
 {% block content %}
 <h1>{{ post.title }}</h1>
 <p>{{ post.content }}</p>
-<p><b>Autor:</b> {{ post.author.username }}</p>
 
-<h3>Komentare</h3>
-{% for comment in post.comments %}
+<h3>Comments</h3>
+
+{% for c in post.comments %}
 <div class="comment">
-    <p>{{ comment.content }}</p>
-    <small>{{ comment.author.username }}</small>
+    {{ c.content }}
 </div>
 {% endfor %}
 
-{% if 'user_id' in session %}
 <form method="POST">
-    <textarea name="content" placeholder="Napis komentar"></textarea>
-    <button type="submit">Pridat komentar</button>
+    <textarea name="content"></textarea>
+    <button>Send</button>
 </form>
-{% endif %}
+
 {% endblock %}
+
+{% if session.get('user_id') == post.user_id %}
+    <a href="/post/{{ post.id }}/edit">Edit</a>
+    <a href="/post/{{ post.id }}/delete">Delete</a>
+{% endif %}
+<small>
+    {{ post.author.username }} |
+    {{ post.created_at }}
+</small>

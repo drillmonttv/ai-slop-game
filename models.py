@@ -5,24 +5,21 @@ db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100), unique=True, nullable=False)
-    password_hash = db.Column(db.String(200), nullable=False)
+    username = db.Column(db.String(100), unique=True)
+    password_hash = db.Column(db.String(200))
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
-    content = db.Column(db.Text, nullable=False)
+    title = db.Column(db.String(200))
+    content = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     author = db.relationship('User')
-    comments = db.relationship('Comment', backref='post', cascade="all, delete")
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text, nullable=False)
+    content = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
-
-    author = db.relationship('User')
+    user_id = db.Column(db.Integer)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
